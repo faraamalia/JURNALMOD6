@@ -5,7 +5,7 @@ public class SayaTubeUser
 {
 	private int id;
 	private List<SayaTubeVideo> uploadedVideos;
-	private string usn;
+	public string usn;
 	public SayaTubeUser(string Username)
     {
         Debug.Assert(Username != null);
@@ -18,18 +18,26 @@ public class SayaTubeUser
 	public int GetTotalVideoPlayCount()
     {
         int count = 0;
-        foreach()
+        foreach(SayaTubeVideo video in uploadedVideos)
+        {
+            count += video.GetPlayCount() ;
+        } 
         return count;
     }
 
-    public void AddVideo(SayaTubeVideo uploadedVideos)
+    public void AddVideo(SayaTubeVideo upv)
     {
+        Debug.Assert(upv != null);
+        Debug.Assert(upv.GetPlayCount() < 100000000);
+        uploadedVideos.Add(upv);
         
     }
 
     public void PrintAllVideoPlayCount()
     {
-        Console.WriteLine("User: " + Username);
-        Console.WriteLine("Video 1 judul: " + title)
+        for(int i = 0; i < uploadedVideos.Count || i < 8; i++) 
+        {
+            Console.WriteLine("Video " + (i++) + "judul: " + uploadedVideos[i].ttl + uploadedVideos[i].GetPlayCount());
+        }
     }
 }
